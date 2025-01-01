@@ -3,14 +3,24 @@ package com.example.hello_spring.service;
 import com.example.hello_spring.domain.Member;
 import com.example.hello_spring.repository.MemberRepository;
 import com.example.hello_spring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+//@Service //컨테이너에게 관리할 녀석이라고 알려줘야함. 없으면 순수한 java일 뿐..
+//빈 등록 방식 : @는 컴포넌트 스캔 방식
+//웬만하면 빈으로 등록해서 써야 함. 기본 싱글톤 등록(유일무이)
 public class MemberService {
 
 //    회원 레파지토리
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+//    @Autowired
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
 //    회원 가입
     public long join(Member member) {

@@ -1,9 +1,11 @@
 package com.example.hello_spring.repository;
 
 import com.example.hello_spring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+//@Repository
 public class MemoryMemberRepository implements MemberRepository {
 //    원래 hashMap과 sequence는 동시성 문제 때문에 추가로 붙여써줘야할게 있음. 여기선 그냥 간단히 하는 것.
     private static Map<Long, Member> store = new HashMap<>();
